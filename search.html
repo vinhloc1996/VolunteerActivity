@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Volunteer Activity</title>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="plugins/cordova-sqlite-storage/www/SQLitePlugin.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+
+</head>
+<body>
+<div class="bar bar-header bar-dark">
+    <a class="button button-clear" href="index.html">Home</a>
+    <h1 class="title">Search Activity</h1>
+</div>
+<h1 id="alertResult"></h1>
+<table class="table" id="resultTable" style="display: none;">
+    <thead>
+    <th style="display: none;">ID</th>
+    <th>Activity Name</th>
+    <th>Volunteer Name</th>
+    <th>Location</th>
+    <th>Details</th>
+    </thead>
+    <tbody id="resultData">
+
+    </tbody>
+</table>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var keyword = decodeURI(getUrlVars()["keyword"]);
+            var result = window.localStorage.getItem("result");
+            if(result != null) {
+                $("#resultTable").show();
+                $("#resultData").html("");
+                for (i = 0; i < result.length; i++){
+                   $("#resultData").append("<tr><td style='display: none;'>"+result.item(i).Id+"</td><td>"+result.item(i).VolunteerActivityName+"</td><td>"+result.item(i).VolunteerName+"</td><td>"+result.item(i).Location+"</td><td><a href='detail.html?id="+result.item(i).Id+"&activityName="+result.item(i).VolunteerActivityName+"&volunteerName="+result.item(i).VolunteerName+"&location="+result.item(i).Location+"&date="+result.item(i).Date+"&time="+result.item(i).Time+"&description="+result.item(i).Description+"'>Detail</a> </td></tr>");
+                   }
+            }else {
+                $("#alertResult").text("No result found with activity name " + keyword)
+            }
+        });
+    </script>
+</body>

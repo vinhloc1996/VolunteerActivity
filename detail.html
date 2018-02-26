@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Volunteer Activity</title>
+    <link rel="stylesheet" type="text/css" href="css/ionic.css">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/geturi.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var id = decodeURI(parseInt(getUrlVars()["id"]));
+            var activityName = decodeURI(getUrlVars()["activityName"]);
+            var volunteerName = decodeURI(getUrlVars()["volunteerName"]);
+            var location = decodeURI(getUrlVars()["location"]);
+            var date = decodeURI(getUrlVars()["date"]);
+            var time = decodeURI(getUrlVars()["time"]);
+            var description = decodeURI(getUrlVars()["description"]);
+            $("#id").text(id);
+            $("#activityName").val(activityName);
+            $("#volunteerName").val(volunteerName);
+            $("#location").val(location);
+            $("#date").val(date);
+            $("#time").val(time);
+            $("#description").val(description);
+            $(".delete").attr('id', id)
+        });
+    </script>
+</head>
+<body>
+<div class="bar bar-header bar-dark">
+    <a class="button button-clear" href="index.html">Home</a>
+    <h1 class="title">Edit Activity</h1>
+</div>
+<div style="padding:10px;margin-top:60px;">
+    <div class="list">
+        <span id="id" style="display: none;"></span>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Activity Name</span>
+            <input type="text" disabled id="activityName" placeholder="Volunteer Activity Name">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Volunteer Name</span>
+            <input type="text" disabled id="volunteerName" placeholder="Volunteer Name">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Location</span>
+            <input type="text" disabled id="location" placeholder="Volunteer Location (Optional)">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Date</span>
+            <input type="text" disabled id="date" placeholder="Volunteer Date">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Time</span>
+            <input type="text" disabled id="time" placeholder="Volunteer Time (Optional)">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <input type="text" disabled id="description" placeholder="Volunteer Description (Optional)">
+        </label>
+        <button id="update" class="button button-block">Edit</button>
+        <button class="button button-block delete">Delete</button>
+    </div>
+</div>
+
+</body>
+</html>
